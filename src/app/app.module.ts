@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgRedux, NgReduxModule } from 'ng2-redux';
-import { fromJS, Map } from 'immutable';
 
 import { AppComponent } from './app.component';
 import { IAppState, rootReducer, INITIAL_STATE } from './store';
@@ -20,7 +19,7 @@ import { IAppState, rootReducer, INITIAL_STATE } from './store';
 })
 export class AppModule {
   // configure initial store
-  constructor(ngRedux: NgRedux<Map<string, any>>) {
-    ngRedux.configureStore(rootReducer, fromJS(INITIAL_STATE));
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE);
   }
 }

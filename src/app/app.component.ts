@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from './store';
 import { INCREMENT } from './actions';
-import { Map } from 'immutable';
 
 @Component({
   selector: 'cp-root',
@@ -11,12 +10,12 @@ import { Map } from 'immutable';
 })
 export class AppComponent {
   title = 'Cardpay Dashboard';
-  @select(s => s.get('counter')) count;
+  @select('counter') count;
   // messaging.newMessages
   // @select([ 'messaging', 'newMessages' ]) newMessages;
   // @select( (s: IAppState) => s.messaging.newMessages ) newMessagesCount;
 
-  constructor(private ngRedux: NgRedux<Map<string, any>>) {}
+  constructor(private ngRedux: NgRedux<IAppState>) {}
 
   increment() {
     this.ngRedux.dispatch({ type: INCREMENT });
