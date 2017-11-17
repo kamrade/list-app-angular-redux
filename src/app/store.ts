@@ -1,3 +1,4 @@
+
 import { tassign } from 'tassign';
 import { INCREMENT } from './actions';
 
@@ -6,13 +7,15 @@ export interface IAppState {
   messaging?: {
     newMessages: number;
   };
+  mainTitle: string
 }
 
 export const INITIAL_STATE: IAppState = {
   counter: 0,
   messaging: {
     newMessages: 5
-  }
+  },
+  mainTitle: 'Main Title'
 };
 
 export function rootReducer(state: IAppState, action): IAppState {

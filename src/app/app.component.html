@@ -1,5 +1,11 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-  <p>Counter: {{ count | async }}</p>
-  <button (click)="increment()">Increment</button>
+<cp-header></cp-header>
+<div class="workspace">
+  <div class="container">
+    <div class="title-block">
+      <h1 class="app-title">{{ mainTitle | async }}</h1>
+    </div>
+
+    <p>Counter: {{ count | async }}</p>
+    <button class="btn btn-primary" (click)="increment()">Increment</button>
+  </div>
 </div>
