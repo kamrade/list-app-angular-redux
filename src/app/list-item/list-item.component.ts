@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'cp-list-item',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-item.component.sass']
 })
 export class ListItemComponent implements OnInit {
+
+  @Input() listTitle;
 
   constructor() { }
 
