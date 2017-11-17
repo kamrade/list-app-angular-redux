@@ -2,12 +2,18 @@
 import { tassign } from 'tassign';
 import { INCREMENT } from './actions';
 
+export interface IListItem {
+  title: string;
+  cards?: string;
+}
+
 export interface IAppState {
   counter: number;
   messaging?: {
     newMessages: number;
   };
-  mainTitle: string
+  mainTitle: string;
+  list: IListItem[];
 }
 
 export const INITIAL_STATE: IAppState = {
@@ -15,7 +21,12 @@ export const INITIAL_STATE: IAppState = {
   messaging: {
     newMessages: 5
   },
-  mainTitle: 'Main Title'
+  mainTitle: 'List Application',
+  list: [{
+    title: 'Volkswagen'
+  },{
+    title: 'Mercedes'
+  }]
 };
 
 export function rootReducer(state: IAppState, action): IAppState {

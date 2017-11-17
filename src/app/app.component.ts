@@ -12,9 +12,6 @@ export class AppComponent {
   title = 'Cardpay Dashboard';
   @select('counter') count;
   @select('mainTitle') mainTitle;
-  // messaging.newMessages
-  // @select([ 'messaging', 'newMessages' ]) newMessages;
-  // @select( (s: IAppState) => s.messaging.newMessages ) newMessagesCount;
 
   constructor(private ngRedux: NgRedux<IAppState>) {}
 

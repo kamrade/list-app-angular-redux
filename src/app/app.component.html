@@ -4,7 +4,11 @@
     <div class="title-block">
       <h1 class="app-title">{{ mainTitle | async }}</h1>
     </div>
+    <hr>
 
+    <cp-list></cp-list>
+
+    <hr>
     <p>Counter: {{ count | async }}</p>
     <button class="btn btn-primary" (click)="increment()">Increment</button>
   </div>
