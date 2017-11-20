@@ -7,6 +7,8 @@ import { IAppState, rootReducer, INITIAL_STATE } from './store';
 import { HeaderComponent } from './header/header.component';
 import { ListComponent } from './list/list.component';
 import { ListItemComponent } from './list-item/list-item.component';
+import { ListItemNewComponent } from './list-item-new/list-item-new.component';
+import { TestDirective } from './test.directive';
 
 
 @NgModule({
@@ -14,7 +16,9 @@ import { ListItemComponent } from './list-item/list-item.component';
     AppComponent,
     HeaderComponent,
     ListComponent,
-    ListItemComponent
+    ListItemComponent,
+    ListItemNewComponent,
+    TestDirective
   ],
   imports: [
     BrowserModule,
