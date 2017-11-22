@@ -1,34 +1,46 @@
-import { Component, ViewChild, ElementRef, Renderer2, AfterViewInit, AfterViewChecked } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer2, AfterViewChecked, OnInit } from '@angular/core';
+import { NgRedux, select } from 'ng2-redux';
+import { IAppState } from '../store';
+import { ADD_LIST_ITEM } from '../actions';
 
 @Component({
   selector: 'cp-list-item-new',
   templateUrl: './list-item-new.component.html',
   styleUrls: ['./list-item-new.component.sass']
 })
-export class ListItemNewComponent implements AfterViewInit, AfterViewChecked {
+export class ListItemNewComponent implements AfterViewChecked, OnInit {
 
-  private newListItem: ElementRef;
-  @ViewChild('newListItem') set content(content: ElementRef) {
-    this.newListItem = content;
+  @select('list') list;
+  renderList: any;
+
+  private newListInput: ElementRef;
+  @ViewChild('newListInput') set content(content: ElementRef) {
+    this.newListInput = content;
   }
-  editMode: boolean = false;
+  editMode = false;
 
-  constructor(private renderer: Renderer2) {
-    let inputElement = this.renderer.createElement('input');
+  constructor(private renderer: Renderer2, private ngRedux: NgRedux<IAppState>) {}
+
+  ngOnInit() {
+    this.list.subscribe(x => {
+      console.log(x);
+      return this.renderList = x;
+    });
   }
 
   ngAfterViewChecked() {
-    if(this.newListItem) {
-      this.newListItem.nativeElement.focus();
-      this.newListItem.nativeElement.value = 'test';
+    if (this.newListInput) {
+      this.newListInput.nativeElement.focus();
     }
-  }
-
-  ngAfterViewInit() {
   }
 
   activate() {
     this.editMode = true;
+  }
+
+  addNewList() {
+    this.deactivate();
+    this.ngRedux.dispatch({ type: ADD_LIST_ITEM, newItem: this.newListInput.nativeElement.value });
   }
 
   deactivate() {

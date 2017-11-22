@@ -29,6 +29,7 @@ import { TestDirective } from './test.directive';
 })
 export class AppModule {
   // configure initial store
+  // configure devTools
   constructor(ngRedux: NgRedux<IAppState>,
   devTools: DevToolsExtension) {
     const enhancers = isDevMode() ? [devTools.enhancer()] : [];

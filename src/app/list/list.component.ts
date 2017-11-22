@@ -16,7 +16,6 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.list.subscribe(x => this.renderList = x);
-    // console.log(this.renderList);
   }
 
 }

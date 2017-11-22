@@ -6,9 +6,9 @@
 
   <div *ngIf="editMode" class="edit-mode">
     <div class="list-group list-group--new">
-      <input #newListItem type="text" class="form-control new-list-item" placeholder="New list item">
+      <input #newListInput type="text" class="form-control new-list-item" placeholder="New list item">
     </div>
-    <button (click)="deactivate()" class="btn btn-primary">Save</button>
+    <button (click)="addNewList()" class="btn btn-primary">Save</button>
   </div>
 
 </div>

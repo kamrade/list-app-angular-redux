@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from './store';
 import { INCREMENT } from './actions';
+import { DECREMENT } from './actions';
 
 @Component({
   selector: 'cp-root',
@@ -17,5 +18,8 @@ export class AppComponent {
 
   increment() {
     this.ngRedux.dispatch({ type: INCREMENT });
+  }
+  decrement() {
+    this.ngRedux.dispatch({ type: DECREMENT });
   }
 }
