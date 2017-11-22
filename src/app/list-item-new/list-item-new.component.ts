@@ -23,7 +23,6 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
 
   ngOnInit() {
     this.list.subscribe(x => {
-      console.log(x);
       return this.renderList = x;
     });
   }
@@ -39,8 +38,17 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
   }
 
   addNewList() {
+    const listTitle = this.newListInput.nativeElement.value;
+    if (listTitle !== '') {
+      this.ngRedux.dispatch({ type: ADD_LIST_ITEM, newItem: listTitle });
+    }
     this.deactivate();
-    this.ngRedux.dispatch({ type: ADD_LIST_ITEM, newItem: this.newListInput.nativeElement.value });
+  }
+
+  onKeyPressHandler(event) {
+    if (event.keyCode === 13) {
+      this.addNewList();
+    }
   }
 
   deactivate() {

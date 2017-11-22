@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgRedux, select } from 'ng2-redux';
+import { IAppState } from '../store';
 
 @Component({
   selector: 'cp-header',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @select('list') list;
+  listCount = 0;
+
+  constructor(private ngRedux: NgRedux<IAppState>) { }
 
   ngOnInit() {
+    this.list.subscribe(x => this.listCount = x.length);
   }
 
 }

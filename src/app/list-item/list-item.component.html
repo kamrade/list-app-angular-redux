@@ -1,4 +1,9 @@
-<div class="list-item">
-  <h2 class="list-item--title"> {{ listTitle }} </h2>
+<div class="list-item mb-2">
+  <h2 class="list-item--title">
+    {{ listTitle }}
+    <i
+      (click)="removeList()"
+      class="fa fa-times ico-close" aria-hidden="true"></i>
+  </h2>
   <div cpTest class="cards-container"></div>
 </div>
