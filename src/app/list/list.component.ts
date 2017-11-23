@@ -9,7 +9,7 @@ import { IAppState } from '../store';
 })
 export class ListComponent implements OnInit {
 
-  @select('list') list;
+  @select('filteredList') list;
   renderList;
 
   constructor(private ngRedux: NgRedux<IAppState>) { }

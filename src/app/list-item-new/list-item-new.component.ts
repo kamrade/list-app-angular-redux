@@ -1,7 +1,7 @@
 import { Component, ViewChild, ElementRef, Renderer2, AfterViewChecked, OnInit } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../store';
-import { ADD_LIST_ITEM } from '../actions';
+import { ADD_LIST_ITEM, FILTER_LIST } from '../actions';
 
 @Component({
   selector: 'cp-list-item-new',
@@ -41,6 +41,7 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
     const listTitle = this.newListInput.nativeElement.value;
     if (listTitle !== '') {
       this.ngRedux.dispatch({ type: ADD_LIST_ITEM, newItem: listTitle });
+      this.ngRedux.dispatch({ type: FILTER_LIST });
     }
     this.deactivate();
   }
