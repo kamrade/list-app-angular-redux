@@ -5,5 +5,9 @@
       (click)="removeList()"
       class="fa fa-times ico-close" aria-hidden="true"></i>
   </h2>
-  <div class="cards-container"></div>
+  <div class="cards-container">
+    <div class="card" *ngFor="let card of cards">
+      <p>{{ card.text }}</p>
+    </div>
+  </div>
 </div>

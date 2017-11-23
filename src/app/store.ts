@@ -10,10 +10,15 @@ import {
   SET_FILTER_STRING
 } from './actions';
 
+export interface ICard {
+  id: number,
+  text?: string
+}
+
 export interface IListItem {
   title: string;
   id: number;
-  cards?: string;
+  cards?: ICard[];
 }
 
 export interface IAppState {
@@ -37,7 +42,17 @@ export const INITIAL_STATE: IAppState = {
   filteredList: [],
   list: [{
     id: 1,
-    title: 'Volkswagen'
+    title: 'Volkswagen',
+    cards: [{
+      id: 1,
+      text: 'Berlin'
+    }, {
+      id: 2,
+      text: 'Munich'
+    }, {
+      id: 3,
+      text: 'Hamburgh'
+    }]
   }, {
     id: 2,
     title: 'Mercedes'
