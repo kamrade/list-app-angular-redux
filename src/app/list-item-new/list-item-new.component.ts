@@ -1,4 +1,11 @@
-import { Component, ViewChild, ElementRef, Renderer2, AfterViewChecked, OnInit } from '@angular/core';
+import {
+  Component,
+  ViewChild,
+  ElementRef,
+  Renderer2,
+  AfterViewChecked,
+  OnInit,
+  HostListener } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../store';
 import { ADD_LIST_ITEM, FILTER_LIST } from '../actions';
@@ -9,6 +16,15 @@ import { ADD_LIST_ITEM, FILTER_LIST } from '../actions';
   styleUrls: ['./list-item-new.component.sass']
 })
 export class ListItemNewComponent implements AfterViewChecked, OnInit {
+
+  @HostListener('document:keyup', ['$event'])
+  onKeyUp(ev:KeyboardEvent) {
+    if (ev.keyCode === 27) {
+      if (this.checkStatus()) {
+        this.deactivate();
+      }
+    }
+  }
 
   @select('list') list;
   renderList: any;
@@ -31,6 +47,10 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
     if (this.newListInput) {
       this.newListInput.nativeElement.focus();
     }
+  }
+
+  checkStatus() {
+    return this.editMode;
   }
 
   activate() {

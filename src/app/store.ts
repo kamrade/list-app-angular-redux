@@ -72,9 +72,7 @@ export function rootReducer(state: IAppState, action): IAppState {
       return tassign(state, { filterString: action.filterString });
 
     case FILTER_LIST:
-
       let filtList;
-
       if (state.filterString !== '') {
         filtList = state.list.filter((item) => {
           if (item.title.toLowerCase().indexOf(state.filterString.toLowerCase()) > -1) {
@@ -84,7 +82,6 @@ export function rootReducer(state: IAppState, action): IAppState {
       } else {
         filtList = state.list;
       }
-
       return tassign(state, { filteredList: filtList});
 
     case REMOVE_LIST_ITEM:
