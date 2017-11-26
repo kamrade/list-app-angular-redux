@@ -33,14 +33,18 @@ export class ListComponent implements OnInit, OnDestroy {
       const initialScroll = listCont.scrollLeft;
       const initialX      = evt.clientX;
       this.mouseMove = this.renderer.listen(listCont, 'mousemove', (evt) => {
-        if(evt.stopPropagation) evt.stopPropagation();
-        if(evt.preventDefault) evt.preventDefault();
-        evt.cancelBubble=true;
-        evt.returnValue=false;
+        if (evt.stopPropagation) {
+           evt.stopPropagation();
+        }
+        if (evt.preventDefault) {
+          evt.preventDefault();
+        }
+        evt.cancelBubble = true;
+        evt.returnValue = false;
 
         const newX = evt.clientX;
-        let diff   = newX - initialX;
-        listCont.scrollLeft = initialScroll - diff*this.multiplier;
+        const diff   = newX - initialX;
+        listCont.scrollLeft = initialScroll - diff * this.multiplier;
 
         return false;
       });

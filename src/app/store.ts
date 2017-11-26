@@ -11,8 +11,8 @@ import {
 } from './actions';
 
 export interface ICard {
-  id: number,
-  text?: string
+  id: number;
+  text?: string;
 }
 
 export interface IListItem {
