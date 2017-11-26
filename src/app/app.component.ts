@@ -18,14 +18,17 @@ export class AppComponent {
 
     // LocalStorage operations
     const data = localStorage.getItem('listAppData');
+
     if (data) {
       this.ngRedux.dispatch({ type: SET_LIST, list: JSON.parse(data) });
     } else {
       localStorage.setItem('listAppData', JSON.stringify(this.ngRedux.getState().list));
     }
+
     this.itemsList.subscribe(items => {
       localStorage.setItem('listAppData', JSON.stringify(items));
     });
+    // end of LocalStorage operations >>>
 
     this.ngRedux.dispatch({ type: FILTER_LIST });
   }

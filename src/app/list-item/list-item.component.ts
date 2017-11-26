@@ -12,7 +12,7 @@ export class ListItemComponent implements OnInit {
 
   @Input() listTitle;
   @Input() listId;
-  @Input() cards;
+  @Input() cards = [];
 
   constructor(private ngRedux: NgRedux<IAppState>) { }
 

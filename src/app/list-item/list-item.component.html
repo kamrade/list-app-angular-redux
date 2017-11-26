@@ -7,7 +7,7 @@
       class="fa fa-times ico-close" aria-hidden="true"></i>
   </h2>
 
-  <div class="cards-container mb-3">
+  <div *ngIf="cards ? cards.length : false" class="cards-container mb-3">
     <div class="card" *ngFor="let card of cards">
       <p>{{ card.text }}</p>
     </div>
