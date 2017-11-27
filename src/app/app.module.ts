@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, isDevMode } from '@angular/core';
 import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
+import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { IAppState, rootReducer, INITIAL_STATE } from './store';
@@ -9,7 +10,7 @@ import { ListComponent } from './list/list.component';
 import { ListItemComponent } from './list-item/list-item.component';
 import { ListItemNewComponent } from './list-item-new/list-item-new.component';
 import { TestDirective } from './test.directive';
-
+import { ListsService } from './lists.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,10 @@ import { TestDirective } from './test.directive';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     NgReduxModule
   ],
-  providers: [],
+  providers: [ListsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

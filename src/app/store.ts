@@ -43,16 +43,6 @@ export const INITIAL_STATE: IAppState = {
   list: [{
     id: 1,
     title: 'Volkswagen',
-    cards: [{
-      id: 1,
-      text: 'Berlin'
-    }, {
-      id: 2,
-      text: 'Munich'
-    }, {
-      id: 3,
-      text: 'Hamburgh'
-    }]
   }, {
     id: 2,
     title: 'Mercedes'
