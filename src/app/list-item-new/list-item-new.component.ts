@@ -56,8 +56,6 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
     if (newListTitle !== '') {
       this.listService.addListItem(newListTitle);
     }
-    console.log(this.newListInput.nativeElement);
-    // this.newListInput.nativeElement.value = '';
     this.inputValue = '';
     this.deactivate();
   }

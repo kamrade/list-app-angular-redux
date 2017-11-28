@@ -53,6 +53,15 @@ app.post('/v1/lists', function(req, res, next) {
   }));
 });
 
+app.put('/v1/lists/:id', function(req, res, next) {
+  List.findOne({ _id: req.params.id }, ok(next, function(list) {
+    list.set(req.body);
+    list.save(ok(next, function(list) {
+      res.send(list.toJSON());
+    }));
+  }))
+});
+
 app.delete('/v1/lists/:id', function(req, res, next) {
   List.findOne({ _id: req.params.id }, ok(next, function (list) {
     list.remove(ok(next, function(results) {

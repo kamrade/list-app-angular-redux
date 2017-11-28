@@ -28,19 +28,13 @@ export class ListsService {
     const newList = { title: listItemTitle };
     this.http.post(this.ROOT_URL + '/v1/lists', newList)
       .subscribe(res => {
-
-        // Надо создать интерфейс для этой шняги
-        const title = res.title;
-        const id = res._id;
-
-        this.ngRedux.dispatch({ type: 'ADD_LIST_ITEM', listItem: { _id: id, title: title} });
+        this.ngRedux.dispatch({ type: 'ADD_LIST_ITEM', listItem: res });
       }, err => {
         console.log('error', err);
       });
   }
 
   removeListItem(id) {
-    console.log('remove:', id);
     this.http.delete(this.ROOT_URL + '/v1/lists/' + id)
       .subscribe(res => {
         this.ngRedux.dispatch({ type: 'REMOVE_LIST_ITEM', id: id});
