@@ -1,14 +1,40 @@
-.list
+.list-component
   background-color: $gray-200
-  display: flex
-  justify-content: flex-start
-  width: calc(100vw - 2rem)
   min-height: 480px
-  overflow-X: scroll
+  width: calc(100vw - 2rem)
   padding-top: 1rem
+  position: relative
+  user-select: none
+  
+  &.loading
+    .preloader
+      position: absolute
+      z-index: 1
+      top: 0
+      left: 0
+      right: 0
+      bottom: 0
+      background-color: rgba(255, 0, 0, 0.6)
 
-// .list-item--wrapper
-//   user-select: none
+  .list-content
+    width: 100%
+    min-height: 480px
+    overflow-X: auto
+    display: flex
+    justify-content: flex-start
+    flex-wrap: nowrap
+    align-content: flex-start
+    
+    .list-item--wrapper, .list-item-new--wrapper
+      width: 18rem
+      padding-left: 1rem
+      flex-grow: 0
+      flex-shrink: 0
+      flex-basis: 18rem
+    .list-item-new--wrapper
+      width: 21rem
+      flex-basis: 21rem
+      padding-right: 3rem
 
 .list-item
   padding: 1rem
@@ -22,26 +48,6 @@
     line-height: 1.5rem
     margin-bottom: .5rem
     font-weight: bold
-
-  &--new
-
-  .list-group
-    margin-bottom: 0.25rem
-
-.cards-container
-  padding: 1rem 0
-  border-radius: $border-radius
-  .card
-    background-color: $gray-300
-    padding: 0.5rem
-    margin: 0.5rem 0
-    border-radius: 3px
-    p
-      margin: 0
-      padding: 0
-      font-size: 1rem
-      line-height: 1.25rem
-
 
 .list-item--btn-new
   text-align: left

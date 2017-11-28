@@ -1,14 +1,24 @@
-<div #listContainer class="list">
+<!--
+  #lisContainer: ref
+  cpTouchScroll: Directive
+-->
+<div #listContainer  [ngClass]="{'list-component': true, 'loading': loading}">
 
-  <div *ngFor="let listItem of renderList" class="list-item--wrapper col-md-3">
-    <cp-list-item
-      [listTitle]="listItem.title"
-      [listId]="listItem.id"
-    ></cp-list-item>
+  <div *ngIf="!loading" class="list-content" cpTouchScroll>
+    
+    <div *ngFor="let listItem of renderList" class="list-item--wrapper">
+      <cp-list-item
+        [listTitle]="listItem.title"
+        [listId]="listItem.id"
+      ></cp-list-item>
+    </div>
+
+    <div class="list-item-new--wrapper">
+      <cp-list-item-new></cp-list-item-new>
+    </div>
+
   </div>
 
-  <div class="col-md-3">
-    <cp-list-item-new></cp-list-item-new>
-  </div>
-
+  <div *ngIf="loading" class="preloader"></div>
+  
 </div>

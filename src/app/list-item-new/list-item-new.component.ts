@@ -6,9 +6,7 @@ import {
   AfterViewChecked,
   OnInit,
   HostListener } from '@angular/core';
-import { NgRedux, select } from 'ng2-redux';
-import { IAppState } from '../store';
-import { ADD_LIST_ITEM, FILTER_LIST } from '../actions';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'cp-list-item-new',
@@ -17,8 +15,12 @@ import { ADD_LIST_ITEM, FILTER_LIST } from '../actions';
 })
 export class ListItemNewComponent implements AfterViewChecked, OnInit {
 
+  private newListInput: ElementRef;
+  editMode = false;
+  inputValue = '';
+
   @HostListener('document:keyup', ['$event'])
-  onKeyUp(ev:KeyboardEvent) {
+  onKeyUp(ev: KeyboardEvent) {
     if (ev.keyCode === 27) {
       if (this.checkStatus()) {
         this.deactivate();
@@ -26,22 +28,13 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
     }
   }
 
-  @select('list') list;
-  renderList: any;
-
-  private newListInput: ElementRef;
   @ViewChild('newListInput') set content(content: ElementRef) {
     this.newListInput = content;
   }
-  editMode = false;
 
-  constructor(private renderer: Renderer2, private ngRedux: NgRedux<IAppState>) {}
+  constructor(private renderer: Renderer2) {}
 
-  ngOnInit() {
-    this.list.subscribe(x => {
-      return this.renderList = x;
-    });
-  }
+  ngOnInit() {}
 
   ngAfterViewChecked() {
     if (this.newListInput) {
@@ -58,11 +51,7 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
   }
 
   addNewList() {
-    const listTitle = this.newListInput.nativeElement.value;
-    if (listTitle !== '') {
-      this.ngRedux.dispatch({ type: ADD_LIST_ITEM, newItem: listTitle });
-      this.ngRedux.dispatch({ type: FILTER_LIST });
-    }
+    console.log(this.inputValue);
     this.deactivate();
   }
 
