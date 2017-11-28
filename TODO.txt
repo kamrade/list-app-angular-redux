@@ -1,0 +1,6 @@
+# Click Outside Directive
+  Can use same as we use in b2b-react application
+  Довести до ума.
+
+# Global Esc Directive
+  То же что ClickOutside. Перенести все в директиву.

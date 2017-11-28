@@ -21,8 +21,8 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
   inputValue = '';
 
   @HostListener('document:keyup', ['$event'])
-  onKeyUp(ev: KeyboardEvent) {
-    if (ev.keyCode === 27) {
+  onKeyUp(event: KeyboardEvent) {
+    if (event.keyCode === 27) {
       if (this.checkStatus()) {
         this.deactivate();
       }

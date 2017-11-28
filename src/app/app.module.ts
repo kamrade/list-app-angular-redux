@@ -14,6 +14,7 @@ import { ListItemComponent } from './list-item/list-item.component';
 import { ListItemNewComponent } from './list-item-new/list-item-new.component';
 import { ListsService } from './lists.service';
 import { TouchScrollDirective } from './touch-scroll.directive';
+import { ClickOutsideDirective } from './click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TouchScrollDirective } from './touch-scroll.directive';
     ListComponent,
     ListItemComponent,
     ListItemNewComponent,
-    TouchScrollDirective
+    TouchScrollDirective,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,

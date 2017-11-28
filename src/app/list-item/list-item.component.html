@@ -1,11 +1,21 @@
 <div class="list-item mb-2">
 
-  <h2 class="list-item--title">
-    {{ listTitle }}
+  <h2
+    *ngIf="!editMode"
+    (click)="switchToEditMode($event)"
+    class="list-item--title">
+      {{ listTitle }}
     <i
       (click)="removeList()"
       class="fa fa-times ico-close" aria-hidden="true"></i>
   </h2>
+  
+  <input
+    *ngIf="editMode"
+    #editListNameInput
+    cpClickOutside
+    (clickOutside)="clickOutsideFire()"
+    type="text" class="form-control new-list-item mb-2" />
 
   <div class="new-card-container">
     <button class="btn btn-link btn--new-list">New list item</button>
