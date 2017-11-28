@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, isDevMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+// import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { NgRedux, NgReduxModule, DevToolsExtension } from 'ng2-redux';
 
@@ -25,7 +26,8 @@ import { TouchScrollDirective } from './touch-scroll.directive';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    // HttpModule,
+    HttpClientModule,
     FormsModule,
     NgReduxModule
   ],

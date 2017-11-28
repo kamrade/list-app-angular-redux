@@ -7,6 +7,7 @@ import {
   OnInit,
   HostListener } from '@angular/core';
 import { NgModel } from '@angular/forms';
+import { ListsService } from '../lists.service';
 
 @Component({
   selector: 'cp-list-item-new',
@@ -32,7 +33,7 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
     this.newListInput = content;
   }
 
-  constructor(private renderer: Renderer2) {}
+  constructor(private renderer: Renderer2, private listService: ListsService) {}
 
   ngOnInit() {}
 
@@ -51,7 +52,13 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
   }
 
   addNewList() {
-    console.log(this.inputValue);
+    const newListTitle = this.inputValue;
+    if (newListTitle !== '') {
+      this.listService.addListItem(newListTitle);
+    }
+    console.log(this.newListInput.nativeElement);
+    // this.newListInput.nativeElement.value = '';
+    this.inputValue = '';
     this.deactivate();
   }
 

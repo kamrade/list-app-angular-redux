@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../store';
+import { ListsService } from '../lists.service';
 
 @Component({
   selector: 'cp-list-item',
@@ -12,12 +13,12 @@ export class ListItemComponent implements OnInit {
   @Input() listTitle;
   @Input() listId;
 
-  constructor() { }
+  constructor(private listService: ListsService) { }
 
   ngOnInit() {}
 
   removeList() {
-    console.log('remove item');
+    this.listService.removeListItem(this.listId);
   }
 
 }

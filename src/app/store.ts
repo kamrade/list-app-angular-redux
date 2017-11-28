@@ -6,12 +6,15 @@ import {
 
   FETCH_TODOS_REQUEST,
   FETCH_TODOS_SUCCESS,
-  FETCH_TODOS_ERROR
+  FETCH_TODOS_ERROR,
+
+  ADD_LIST_ITEM,
+  REMOVE_LIST_ITEM
 } from './actions';
 
 export interface IListItem {
   title: string;
-  id: number;
+  _id: number;
 }
 
 export interface IAppState {
@@ -25,19 +28,7 @@ export const INITIAL_STATE: IAppState = {
   counter: 0,
   listLoading: true,
   errorMessage: '',
-  list: [{
-    id: 1,
-    title: 'Volkswagen',
-  }, {
-    id: 2,
-    title: 'Mercedes'
-  }, {
-    id: 3,
-    title: 'Honda'
-  }, {
-    id: 4,
-    title: 'Toyota'
-  }]
+  list: []
 };
 
 export function rootReducer(state: IAppState, action): IAppState {
@@ -55,6 +46,12 @@ export function rootReducer(state: IAppState, action): IAppState {
       return tassign(state, { listLoading: false, list: action.list });
     case FETCH_TODOS_ERROR:
       return tassign(state, { listLoading: false, errorMessage: action.errorMessage });
+
+    // add new list item
+    case ADD_LIST_ITEM:
+      return tassign(state, { list: [ ...state.list, action.listItem] });
+    case REMOVE_LIST_ITEM:
+      return tassign(state, { list: state.list.filter(item => item._id !== action.id )} );
 
     default:
       return state;
