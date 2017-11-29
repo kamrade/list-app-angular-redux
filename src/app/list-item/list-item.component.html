@@ -14,8 +14,11 @@
     *ngIf="editMode"
     #editListNameInput
     cpClickOutside
-    (clickOutside)="clickOutsideFire()"
-    type="text" class="form-control new-list-item mb-2" />
+    (clickOutside)="deactivateEditMode()"
+    cpGlobalEsc
+    (globalEsc)="deactivateEditMode()"
+    type="text"
+    class="form-control edit-list-title mb-2" />
 
   <div class="new-card-container">
     <button class="btn btn-link btn--new-list">New list item</button>

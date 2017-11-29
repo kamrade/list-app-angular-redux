@@ -1,4 +1,4 @@
-import { Renderer2, Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked, HostListener } from '@angular/core';
+import { Renderer2, Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { NgRedux, select } from 'ng2-redux';
 import { IAppState } from '../store';
 import { ListsService } from '../lists.service';
@@ -20,15 +20,6 @@ export class ListItemComponent implements OnInit, AfterViewChecked {
     this.editListNameInput = content;
   }
 
-  @HostListener('document:keyup', ['$event'])
-  onKeyUp(event: KeyboardEvent) {
-    if (event.keyCode === 27) {
-      if (this.editMode) {
-        this.editMode = false;
-      }
-    }
-  }
-
   ngAfterViewChecked() {
     if (this.editListNameInput) {
       this.editListNameInput.nativeElement.focus();
@@ -48,8 +39,7 @@ export class ListItemComponent implements OnInit, AfterViewChecked {
     this.listService.removeListItem(this.listId);
   }
 
-  clickOutsideFire() {
-    console.log('click outside');
+  deactivateEditMode() {
     this.editMode = false;
   }
 

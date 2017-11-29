@@ -1,9 +1,9 @@
-import { Directive, Renderer2, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
+import { Directive, Renderer2, ElementRef, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 
 @Directive({
   selector: '[cpClickOutside]'
 })
-export class ClickOutsideDirective implements OnInit {
+export class ClickOutsideDirective implements OnInit, OnDestroy {
 
   documentClick: () => void;
   @Output() clickOutside = new EventEmitter();
@@ -25,6 +25,10 @@ export class ClickOutsideDirective implements OnInit {
         }
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.documentClick();
   }
 
 }

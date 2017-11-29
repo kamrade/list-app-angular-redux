@@ -15,6 +15,7 @@ import { ListItemNewComponent } from './list-item-new/list-item-new.component';
 import { ListsService } from './lists.service';
 import { TouchScrollDirective } from './touch-scroll.directive';
 import { ClickOutsideDirective } from './click-outside.directive';
+import { GlobalEscDirective } from './global-esc.directive';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ClickOutsideDirective } from './click-outside.directive';
     ListItemComponent,
     ListItemNewComponent,
     TouchScrollDirective,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    GlobalEscDirective
   ],
   imports: [
     BrowserModule,

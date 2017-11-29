@@ -9,7 +9,11 @@
       <input
         [(ngModel)]="inputValue"
         #newListInput
+        cpClickOutside
+        (clickOutside)="deactivate()"
         (keypress)="onKeyPressHandler($event)"
+        cpGlobalEsc
+        (globalEsc)="deactivate()"
         type="text"
         class="form-control new-list-item mb-2"
         placeholder="New list item"

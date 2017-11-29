@@ -4,8 +4,7 @@ import {
   ElementRef,
   Renderer2,
   AfterViewChecked,
-  OnInit,
-  HostListener } from '@angular/core';
+  OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { ListsService } from '../lists.service';
 
@@ -19,15 +18,6 @@ export class ListItemNewComponent implements AfterViewChecked, OnInit {
   private newListInput: ElementRef;
   editMode = false;
   inputValue = '';
-
-  @HostListener('document:keyup', ['$event'])
-  onKeyUp(event: KeyboardEvent) {
-    if (event.keyCode === 27) {
-      if (this.checkStatus()) {
-        this.deactivate();
-      }
-    }
-  }
 
   @ViewChild('newListInput') set content(content: ElementRef) {
     this.newListInput = content;
