@@ -1,6 +1,10 @@
-# Click Outside Directive
-  Can use same as we use in b2b-react application
-  Довести до ума.
++ Click Outside Directive. Can use same as we use in b2b-react application
++ Global Esc. То же что ClickOutside. Перенести все в директиву.
++ Реализовать edit list item title
 
-# Global Esc Directive
-  То же что ClickOutside. Перенести все в директиву.
+- Обработка ошибок, если, например, сервер прилег
+- Перетаскивание listItems. Реализация смены порядка.
+- При добавлении нового, автоматически скроллить в конец и переводить newItem в режим добавления нового.
+- Добавление фильтра.
+- Вынести все маленькие компоненты и директивы в библиотеку
+- Генерация и обработка глобальных событий через Redux

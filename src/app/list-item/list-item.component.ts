@@ -1,6 +1,4 @@
-import { Renderer2, Component, OnInit, Input, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
-import { NgRedux, select } from 'ng2-redux';
-import { IAppState } from '../store';
+import { Renderer2, Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ListsService } from '../lists.service';
 
 @Component({
@@ -8,26 +6,25 @@ import { ListsService } from '../lists.service';
   templateUrl: './list-item.component.html',
   styleUrls: ['./list-item.component.sass']
 })
-export class ListItemComponent implements OnInit, AfterViewChecked {
+export class ListItemComponent implements OnInit {
 
   @Input() listTitle;
   @Input() listId;
   editMode = false;
-  clickOutsideHandler: () => void;
 
   private editListNameInput: ElementRef;
   @ViewChild('editListNameInput') set content(content: ElementRef) {
     this.editListNameInput = content;
-  }
-
-  ngAfterViewChecked() {
     if (this.editListNameInput) {
-      this.editListNameInput.nativeElement.focus();
       this.editListNameInput.nativeElement.value = this.listTitle;
+      this.editListNameInput.nativeElement.focus();
+      this.editListNameInput.nativeElement.select();
     }
   }
 
-  constructor(private listService: ListsService, private renderer: Renderer2) { }
+  constructor(
+    private listService: ListsService,
+    private renderer: Renderer2) { }
 
   ngOnInit() {}
 
@@ -41,6 +38,16 @@ export class ListItemComponent implements OnInit, AfterViewChecked {
 
   deactivateEditMode() {
     this.editMode = false;
+  }
+
+  editKeyupHandler(e) {
+    if (e.keyCode === 13) {
+      const editedValue = this.editListNameInput.nativeElement.value;
+      if (editedValue !== '') {
+        this.listService.editListItem(this.listId, editedValue);
+      }
+      this.deactivateEditMode();
+    }
   }
 
 }

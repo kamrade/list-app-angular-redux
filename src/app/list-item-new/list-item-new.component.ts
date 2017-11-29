@@ -5,7 +5,6 @@ import {
   Renderer2,
   AfterViewChecked,
   OnInit } from '@angular/core';
-import { NgModel } from '@angular/forms';
 import { ListsService } from '../lists.service';
 
 @Component({

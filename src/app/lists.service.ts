@@ -4,7 +4,13 @@ import { HttpClient } from '@angular/common/http';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from './store';
 
-import { FETCH_TODOS_SUCCESS, FETCH_TODOS_REQUEST, FETCH_TODOS_ERROR } from './actions';
+import {
+  FETCH_TODOS_SUCCESS,
+  FETCH_TODOS_REQUEST,
+  FETCH_TODOS_ERROR,
+  ADD_LIST_ITEM,
+  REMOVE_LIST_ITEM,
+  EDIT_LIST_ITEM } from './actions';
 
 @Injectable()
 export class ListsService {
@@ -28,7 +34,17 @@ export class ListsService {
     const newList = { title: listItemTitle };
     this.http.post(this.ROOT_URL + '/v1/lists', newList)
       .subscribe(res => {
-        this.ngRedux.dispatch({ type: 'ADD_LIST_ITEM', listItem: res });
+        this.ngRedux.dispatch({ type: ADD_LIST_ITEM, listItem: res });
+      }, err => {
+        console.log('error', err);
+      });
+  }
+
+  editListItem(id, value) {
+    const editedList = {title: value};
+    this.http.put(this.ROOT_URL + '/v1/lists/' + id, editedList)
+      .subscribe(res => {
+        this.ngRedux.dispatch({ type: EDIT_LIST_ITEM, listItem: res });
       }, err => {
         console.log('error', err);
       });
@@ -37,7 +53,7 @@ export class ListsService {
   removeListItem(id) {
     this.http.delete(this.ROOT_URL + '/v1/lists/' + id)
       .subscribe(res => {
-        this.ngRedux.dispatch({ type: 'REMOVE_LIST_ITEM', id: id});
+        this.ngRedux.dispatch({ type: REMOVE_LIST_ITEM, id: id});
       }, err => {
         console.log('error', err);
       });

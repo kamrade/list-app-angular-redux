@@ -9,7 +9,7 @@
       (click)="removeList()"
       class="fa fa-times ico-close" aria-hidden="true"></i>
   </h2>
-  
+
   <input
     *ngIf="editMode"
     #editListNameInput
@@ -17,6 +17,7 @@
     (clickOutside)="deactivateEditMode()"
     cpGlobalEsc
     (globalEsc)="deactivateEditMode()"
+    (keyup)="editKeyupHandler($event)"
     type="text"
     class="form-control edit-list-title mb-2" />
 

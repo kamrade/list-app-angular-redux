@@ -9,7 +9,8 @@ import {
   FETCH_TODOS_ERROR,
 
   ADD_LIST_ITEM,
-  REMOVE_LIST_ITEM
+  REMOVE_LIST_ITEM,
+  EDIT_LIST_ITEM
 } from './actions';
 
 export interface IListItem {
@@ -52,6 +53,15 @@ export function rootReducer(state: IAppState, action): IAppState {
       return tassign(state, { list: [ ...state.list, action.listItem] });
     case REMOVE_LIST_ITEM:
       return tassign(state, { list: state.list.filter(item => item._id !== action.id )} );
+    case EDIT_LIST_ITEM:
+      return tassign(state, {
+        list: state.list.map(item => {
+          if(item._id === action.listItem._id) {
+            item.title = action.listItem.title;
+          }
+          return item;
+        })
+      });
 
     default:
       return state;
