@@ -51,8 +51,10 @@ export function rootReducer(state: IAppState, action): IAppState {
     // add new list item
     case ADD_LIST_ITEM:
       return tassign(state, { list: [ ...state.list, action.listItem] });
+
     case REMOVE_LIST_ITEM:
       return tassign(state, { list: state.list.filter(item => item._id !== action.id )} );
+
     case EDIT_LIST_ITEM:
       return tassign(state, {
         list: state.list.map(item => {
